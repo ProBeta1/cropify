@@ -11,3 +11,6 @@ web-build/
 
 # macOS
 .DS_Store
+
+# firebase and google cloud vision API keys
+config/environment.js

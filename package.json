@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@google-cloud/vision": "^2.1.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-firebase/app": "^8.4.2",
     "@react-navigation/native": "^5.7.3",
@@ -24,7 +25,9 @@
     "react-native-reanimated": "~1.9.0",
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "expo-permissions": "~9.0.1",
+    "expo-image-picker": "~8.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
