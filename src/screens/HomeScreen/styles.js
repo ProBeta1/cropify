@@ -15,5 +15,28 @@ export default StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         paddingLeft: 16
+    },
+    text: {
+        fontSize: 25,
+        margin: 20
+    },
+    headerView: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: 5
+    },
+    footerView: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: '30%'
+    },
+    footerText: {
+        fontSize: 16,
+        color: '#2e2e2d'
+    },
+    footerLink: {
+        color: "#788eec",
+        fontWeight: "bold",
+        fontSize: 16
     }
 })
