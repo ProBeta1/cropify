@@ -16,14 +16,6 @@ const App = () => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
 
-  if (loading) {
-    return (
-      <View style={[styles.container, styles.horizontal]}>
-        <ActivityIndicator size="large" color="#00ff00" />
-      </View>
-    )
-  }
-
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
     firebase.auth().onAuthStateChanged(user => {

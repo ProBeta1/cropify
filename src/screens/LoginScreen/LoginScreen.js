@@ -50,7 +50,7 @@ export default function LoginScreen({ navigation }) {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder='E-mail'
+                    placeholder='Please type in your e-mail'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={(text) => setEmail(text)}
                     value={email}
