@@ -6,9 +6,11 @@ export default function HomeScreen(props) {
 
     const user = props.extraData;
 
-    const onFooterLinkPress = () => {
+    const onAddLinkPress = () => {
         props.navigation.navigate('AddItem')
     }
+
+    const onBuyLinkPress = () => { props.navigation.navigate('BuyItem') }
 
     return (
         <View>
@@ -17,7 +19,11 @@ export default function HomeScreen(props) {
             </View>
 
             <View style={styles.footerView}>
-                <Text style={styles.footerText}>Got stuff to sell ? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Add Here</Text></Text>
+                <Text style={styles.footerText}>Got stuff to sell ? <Text onPress={onAddLinkPress} style={styles.footerLink}>Add Here</Text></Text>
+            </View>
+
+            <View style={styles.footerView}>
+                <Text style={styles.footerText}>Wanna buy something ? <Text onPress={onBuyLinkPress} style={styles.footerLink}>Head over Here</Text></Text>
             </View>
         </View>
     )

@@ -6,6 +6,7 @@ import { LoginScreen, HomeScreen, RegistrationScreen, AddItemScreen } from './sr
 import { decode, encode } from 'base-64'
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 import { firebase } from './src/firebase/config'
+import SearchScreen from './src/screens/SearchScreen/SearchScreen';
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -48,6 +49,9 @@ const App = () => {
             </Stack.Screen>
             <Stack.Screen name="AddItem">
               {props => <AddItemScreen {...props} extraData={user} />}
+            </Stack.Screen>
+            <Stack.Screen name="BuyItem">
+              {props => <SearchScreen {...props} extraData={user} />}
             </Stack.Screen>
           </>
         ) : (

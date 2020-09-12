@@ -145,7 +145,7 @@ export default class AddItemScreen extends React.Component {
                         onLongPress={this._share}
                         style={{ paddingVertical: 10, paddingHorizontal: 10 }}
                     >
-                        JSON.stringify(googleResponse.responses)}
+                        {JSON.stringify(googleResponse.responses)}
                     </Text>
                 )}
             </View>
