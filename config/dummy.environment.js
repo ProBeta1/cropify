@@ -15,7 +15,13 @@ var environments = {
 };
 
 function getReleaseChannel() {
-  let releaseChannel = Expo.Constants.manifest.releaseChannel;
+  try {
+    let releaseChannel = Expo.Constants.manifest.releaseChannel;
+  } catch (err) {
+    console.log("Expo was not defined, so setting releaseChannel to staging")
+    let releaseChannel = 'releaseChannel';
+  }
+
   if (releaseChannel === undefined) {
     return 'staging';
   } else if (releaseChannel === 'staging') {
