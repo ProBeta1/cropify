@@ -14,10 +14,11 @@ import {
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import { v4 as uuid } from "uuid";
+
 // import Environment from '../../../config/environment';
 import { firebase } from "../../firebase/config";
 
-export default class AddItemScreen extends React.Component {
+class AddItemScreen extends React.Component {
   state = {
     image: null,
     uploading: false,
@@ -34,10 +35,7 @@ export default class AddItemScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={styles.container}
-          //   contentContainerStyle={styles.contentContainer}
-        >
+        <View style={styles.container}>
           <View style={styles.getStartedContainer}>
             {image ? null : (
               <Text style={styles.getStartedText}>
@@ -54,11 +52,6 @@ export default class AddItemScreen extends React.Component {
 
             <Button onPress={this._takePhoto} title="Take a photo" />
             {this.state.googleResponse && (
-              // this.state.googleResponse.responses[0].labelAnnotations.map(
-              //   (item, i) => {
-              //     <Text key={i}>Item: {item.description}</Text>;
-              //   }
-              // )
               <FlatList
                 data={this.state.googleResponse.responses[0].labelAnnotations}
                 extraData={this.state}
@@ -118,6 +111,16 @@ export default class AddItemScreen extends React.Component {
           elevation: 2,
         }}
       >
+        <Text
+          onPress={() => {
+            this.props.navigation.navigate("AddItemDetail", {
+              imageUrl: this.state.image,
+            });
+          }}
+          style={{ color: "blue", alignSelf: "center" }}
+        >
+          Click here to add more details about your crop
+        </Text>
         <Button
           style={{ marginBottom: 10 }}
           onPress={() => this.submitToGoogle()}
@@ -265,13 +268,16 @@ async function uploadImageAsync(uri) {
     xhr.send(null);
   });
 
-  const ref = firebase.storage().ref().child(uuid());
+  // TODO: change back to uuid()
+  const ref = firebase.storage().ref().child("testing");
   const snapshot = await ref.put(blob);
 
   blob.close();
 
   return await snapshot.ref.getDownloadURL();
 }
+
+export default AddItemScreen;
 
 const styles = StyleSheet.create({
   container: {

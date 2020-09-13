@@ -28,6 +28,13 @@ export default function HomeScreen(props) {
         Search for a farm
       </Text>
 
+      <Text
+        onPress={() => props.navigation.navigate("AddItemDetail")}
+        style={{ color: "blue", alignSelf: "center" }}
+      >
+        Temporary: add item
+      </Text>
+
       <View style={styles.footerView}>
         <Text style={styles.footerText}>
           Got stuff to sell ?{" "}
