@@ -7,6 +7,7 @@ import {
   HomeScreen,
   RegistrationScreen,
   AddItemScreen,
+  FarmSearchScreen,
   LocationSearchScreen,
 } from "./src/screens";
 import { decode, encode } from "base-64";
@@ -61,6 +62,8 @@ const App = () => {
             <Stack.Screen name="BuyItem">
               {(props) => <SearchScreen {...props} extraData={user} />}
             </Stack.Screen>
+            <Stack.Screen name="FarmSearch">
+              {(props) => <FarmSearchScreen {...props} extraData={user} />}
             <Stack.Screen name="LocationSearch">
               {(props) => <LocationSearchScreen {...props} extraData={user} />}
             </Stack.Screen>
