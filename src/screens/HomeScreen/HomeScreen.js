@@ -18,7 +18,7 @@ export default function HomeScreen(props) {
     <View>
       <View style={styles.headerView}>
         <Text style={styles.headText}>
-          Hey {user.fullName} , how are you today ?
+          Hey {user.fullName}, welcome to Cropify!
         </Text>
       </View>
 
@@ -27,41 +27,42 @@ export default function HomeScreen(props) {
           onPress={() => props.navigation.navigate("FarmSearch")}
         >
           <Image
-            source={{ uri: "https://img.icons8.com/pastel-glyph/2x/search--v2.png" }}
+            source={{
+              uri: "https://img.icons8.com/pastel-glyph/2x/search--v2.png",
+            }}
             style={styles.searchIcon}
           />
         </TouchableOpacity>
 
-        <Text
-          style={[styles.text]}
-        >
-          Search for a nearby farm
-      </Text>
+        <Text style={[styles.text]}>Search for a nearby farm</Text>
       </View>
 
       <View style={styles.Box}>
         <TouchableOpacity onPress={onAddLinkPress}>
           <Image
-            source={{ uri: "https://cdn.iconscout.com/icon/premium/png-512-thumb/sell-13-736060.png" }}
+            source={{
+              uri:
+                "https://cdn.iconscout.com/icon/premium/png-512-thumb/sell-13-736060.png",
+            }}
             style={styles.sellIcon}
           />
         </TouchableOpacity>
 
-        <Text style={styles.text}>
-          Got stuff to sell ?{" "}
-            Add Here
-        </Text>
-
+        <Text style={styles.text}>Got stuff to sell ? Add Here</Text>
       </View>
 
       <View style={styles.Box}>
-        <TouchableOpacity onPress={onBuyLinkPress}><Image
-          source={{ uri: "https://cdn.iconscout.com/icon/premium/png-512-thumb/buy-now-5-622218.png" }} style={styles.buyIcon} /></TouchableOpacity>
+        <TouchableOpacity onPress={onBuyLinkPress}>
+          <Image
+            source={{
+              uri:
+                "https://cdn.iconscout.com/icon/premium/png-512-thumb/buy-now-5-622218.png",
+            }}
+            style={styles.buyIcon}
+          />
+        </TouchableOpacity>
 
-        <Text style={styles.text}>
-          Wanna buy something ?
-
-        </Text>
+        <Text style={styles.text}>Wanna buy something ?</Text>
       </View>
     </View>
   );
