@@ -7,6 +7,7 @@ import {
   HomeScreen,
   RegistrationScreen,
   AddItemScreen,
+  LocationSearchScreen,
 } from "./src/screens";
 import { decode, encode } from "base-64";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
@@ -59,6 +60,9 @@ const App = () => {
             </Stack.Screen>
             <Stack.Screen name="BuyItem">
               {(props) => <SearchScreen {...props} extraData={user} />}
+            </Stack.Screen>
+            <Stack.Screen name="LocationSearch">
+              {(props) => <LocationSearchScreen {...props} extraData={user} />}
             </Stack.Screen>
           </>
         ) : (

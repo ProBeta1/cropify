@@ -21,6 +21,13 @@ export default function HomeScreen(props) {
         </Text>
       </View>
 
+      <Text
+        onPress={() => props.navigation.navigate("LocationSearch")}
+        style={styles.footerLink}
+      >
+        Location Search
+      </Text>
+
       <View style={styles.footerView}>
         <Text style={styles.footerText}>
           Got stuff to sell ?{" "}
