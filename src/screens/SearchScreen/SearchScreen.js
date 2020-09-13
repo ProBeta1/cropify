@@ -59,6 +59,11 @@ export default function SearchScreen(props) {
   const _renderItem = ({ item, index }) => {
     return (
       <View style={styles.card}>
+        <Text style={{ color: "red" }}>
+          {item.active > 20000
+            ? "*Item is from location with high number of COVID cases "
+            : ""}
+        </Text>
         <TouchableOpacity activeOpacity={0.6}>
           <Image
             source={{ uri: item.imageUrl }}
@@ -66,15 +71,21 @@ export default function SearchScreen(props) {
           />
         </TouchableOpacity>
         <View style={styles.content}>
-          <Text style={styles.contentText}>item : {item.itemName}</Text>
-          <Text style={styles.contentText}>Price : ₹ {item.price}</Text>
-          <Text style={styles.contentText}>Seller : {item.farmName}</Text>
-          <Text style={styles.contentText}>Location : {item.farmLocation}</Text>
+          <Text style={styles.contentText}>Item: {item.itemName}</Text>
+          <Text style={styles.contentText}>Price: ₹ {item.price}</Text>
+          <Text style={styles.contentText}>Seller: {item.farmName}</Text>
+          <Text style={styles.contentText}>
+            Produced in {item.farmLocation}
+          </Text>
           <Text style={styles.contentText}>
             More about {item.farmLocation}:
           </Text>
-          <Text>Confirmed COVID19 cases: {item.confirmed}</Text>
-          <Text>Active COVID19 cases: {item.active}</Text>
+          <Text style={{ color: "white" }}>
+            Confirmed COVID19 cases: {item.confirmed}
+          </Text>
+          <Text style={{ color: "white" }}>
+            Active COVID19 cases: {item.active}
+          </Text>
         </View>
       </View>
     );
@@ -90,6 +101,7 @@ export default function SearchScreen(props) {
           style={styles.input}
           onChangeText={(text) => onChangeText(text)}
           value={value}
+          placeholder="Enter an item name (e.g. Apples, Onions)"
         />
       </View>
       {value ? (

@@ -21,7 +21,7 @@ export default StyleSheet.create({
     margin: 20,
   },
   card: {
-    backgroundColor: "#ff5a5f",
+    backgroundColor: "#999",
     borderRadius: 30,
     // height: 400,
     marginTop: 10,
