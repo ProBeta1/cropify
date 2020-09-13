@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 import MapView, { Marker } from "react-native-maps";
+import { GetCovidInfo } from "../../utilities/GetCovidInfo";
 
 // cropify project
 const GCP_API_KEY = "AIzaSyDg3QleDVQIZMBzAHylCxsPaZLf1eSQXSE";
@@ -25,19 +26,20 @@ const FarmSearchScreen = () => {
     latitudeDelta: 0.05,
     longitudeDelta: 0.05,
   });
+  const [covidInfo, setCovidInfo] = useState(null);
+  const [activeCases, setActiveCases] = useState(0);
 
-  const onPress = () => {
-    // Google Places API
+  const onPress = async () => {
+    // Google Places API: query: farms, India, $location
     axios
       .get(
         `https://maps.googleapis.com/maps/api/place/textsearch/json?query=farms+India+${location}&radius=20000&key=${GCP_API_KEY}
     `
       )
-      .then((response) => {
+      .then(async (response) => {
         const raw = response.data.results;
         setFarms(raw);
         let coordsList = new Array();
-        console.log(raw[1]);
         raw.forEach((data) => {
           const latLng = data.geometry.location;
           const newLatLng = { latitude: latLng.lat, longitude: latLng.lng };
@@ -47,8 +49,19 @@ const FarmSearchScreen = () => {
             rating: data.rating,
           });
         });
-        console.log(coordsList);
+        let firstCoords = coordsList[0].latlng;
+        firstCoords.latitudeDelta = 0.05;
+        firstCoords.longitudeDelta = 0.05;
+
+        setRegion(firstCoords);
         setCoords(coordsList);
+
+        // Get covid info of the location
+        const result = await GetCovidInfo(location);
+        if (result.msg === "ok") {
+          setActiveCases(result.active);
+          setCovidInfo(result.covidInfo);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -68,29 +81,19 @@ const FarmSearchScreen = () => {
           <Ionicons name="ios-search" size={32} color="black" />
         </TouchableOpacity>
       </View>
-      {/* <View>
-        {farms &&
-          farms.map((farm, i) => {
-            return (
-              <View key={i} style={{ marginBottom: 10 }}>
-                <Text>{farm.name}</Text>
-                <Text>{farm.formatted_address}</Text>
-                <Text>Rating: {farm.rating}/5</Text>
-              </View>
-            );
-          })}
-      </View> */}
+
+      {covidInfo && (
+        <View>
+          <Text>District: {location}</Text>
+          <Text>Population: {covidInfo.meta.population}</Text>
+          <Text>Active Covid Cases: {activeCases}</Text>
+          {/* <Text>Today's confirmed cases: {covidInfo.delta.confirmed}</Text> */}
+        </View>
+      )}
       <View>
         <MapView
           style={{ width: Dimensions.get("window").width, height: 300 }}
           region={region}
-          // maxZoomLevel={4}
-          // initialRegion={{
-          //   latitude: 12.8677572,
-          //   longitude: 74.899232,
-          //   latitudeDelta: 2,
-          //   longitudeDelta: 0.0421,
-          // }}
           provider="google"
         >
           {coords &&
@@ -99,7 +102,7 @@ const FarmSearchScreen = () => {
                 key={i}
                 coordinate={coord.latlng}
                 title={coord.title}
-                description={`Rating: ${coord.rating.toString()}/5`}
+                description={`Google Rating: ${coord.rating.toString()}/5`}
               />
             ))}
         </MapView>

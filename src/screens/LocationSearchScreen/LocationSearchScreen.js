@@ -20,7 +20,7 @@ const LocationSearchScreen = () => {
     if (result.msg === "ok") {
       setActiveCases(result.active);
       setCovidInfo(result.covidInfo);
-      console.log(result.covidInfo);
+      // console.log(result.covidInfo);
     }
   };
 

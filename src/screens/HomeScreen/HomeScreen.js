@@ -21,15 +21,11 @@ export default function HomeScreen(props) {
         </Text>
       </View>
 
-
-      <Text onPress={() => props.navigation.navigate("FarmSearch")}>
-        Farm search
-      </Text>
       <Text
-        onPress={() => props.navigation.navigate("LocationSearch")}
-        style={styles.footerLink}
+        onPress={() => props.navigation.navigate("FarmSearch")}
+        style={{ color: "blue", alignSelf: "center" }}
       >
-        Location Search
+        Search for a farm
       </Text>
 
       <View style={styles.footerView}>
