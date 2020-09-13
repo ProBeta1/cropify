@@ -1,4 +1,4 @@
-export const districts = [
+export const allDistricts = [
   "Agar Malwa",
   "Agra",
   "Ahmedabad",

@@ -112,7 +112,13 @@ const FarmSearchScreen = () => {
       <View>
         <FlatList
           data={dropdown}
-          renderItem={({ item, index }) => <Text key={index}>{item}</Text>}
+          renderItem={({ item, index }) => (
+            <Text key={index} style={{ paddingVertical: 5, paddingLeft: 10 }}>
+              {item}
+            </Text>
+          )}
+          style={{ maxHeight: 150, borderColor: "black", borderWidth: 2 }}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
 
