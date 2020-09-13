@@ -64,6 +64,8 @@ const App = () => {
             </Stack.Screen>
             <Stack.Screen name="FarmSearch">
               {(props) => <FarmSearchScreen {...props} extraData={user} />}
+            </Stack.Screen>
+
             <Stack.Screen name="LocationSearch">
               {(props) => <LocationSearchScreen {...props} extraData={user} />}
             </Stack.Screen>
