@@ -9,6 +9,7 @@ import {
   AddItemScreen,
   FarmSearchScreen,
   LocationSearchScreen,
+  AddItemDetailScreen,
 } from "./src/screens";
 import { decode, encode } from "base-64";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
@@ -58,6 +59,9 @@ const App = () => {
             </Stack.Screen>
             <Stack.Screen name="AddItem">
               {(props) => <AddItemScreen {...props} extraData={user} />}
+            </Stack.Screen>
+            <Stack.Screen name="AddItemDetail">
+              {(props) => <AddItemDetailScreen {...props} extraData={user} />}
             </Stack.Screen>
             <Stack.Screen name="BuyItem">
               {(props) => <SearchScreen {...props} extraData={user} />}
