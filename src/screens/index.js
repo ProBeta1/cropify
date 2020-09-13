@@ -9,3 +9,6 @@ export { default as FarmerProfileScreen } from "./SearchScreen/SearchScreen";
 export { default as AddItemScreen } from "./AddItemScreen/AddItemScreen";
 
 export { default as FarmSearchScreen } from "./FarmSearchScreen/FarmSearchScreen";
+
+export { default as LocationSearchScreen } from "./LocationSearchScreen/LocationSearchScreen";
+
