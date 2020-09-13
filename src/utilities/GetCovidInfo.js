@@ -16,6 +16,7 @@ export const GetCovidInfo = async (location) => {
 
       // 2. Create a district list, Array of { district, state}
       let districtList = new Array();
+      let d = new Array();
       states.forEach((state) => {
         const raw2 = raw[state].districts;
         const districts = Object.keys(raw2);
@@ -25,6 +26,7 @@ export const GetCovidInfo = async (location) => {
             state: state,
             id: state + i,
           });
+          d.push(district);
         });
       });
       districtList.sort((a, b) => a.district > b.district);
@@ -43,7 +45,8 @@ export const GetCovidInfo = async (location) => {
         // The logic of active is: Active = Confirmed - Recovered - Deceased - Migrated Others
         const { confirmed, deceased, recovered } = covidInfo.total;
         const active = confirmed - recovered - deceased;
-
+        // d.sort((a, b) => a > b);
+        // console.log(d);
         // 5. Return values in Object type
         return { districtList, covidInfo, active, msg: "ok" };
       }

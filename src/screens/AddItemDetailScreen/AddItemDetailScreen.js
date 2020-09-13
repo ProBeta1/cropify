@@ -7,9 +7,9 @@ const AddItemDetailScreen = (props) => {
   const { imageUrl } = route.params;
 
   const handleAdded = () => {
-    Alert.alert(item.itemName + " succesfully added :)")
+    Alert.alert(item.itemName + " succesfully added :)");
     navigation.navigate("Home");
-  }
+  };
 
   const [item, setItem] = useState({
     itemName: "",
@@ -20,28 +20,58 @@ const AddItemDetailScreen = (props) => {
   });
   return (
     <View>
-      <Text style={{ margin: 20, fontSize: 20, fontWeight: 'bold' }}>Add the Details</Text>
+      <Text style={{ margin: 20, fontSize: 20, fontWeight: "bold" }}>
+        Add the Details
+      </Text>
       <View>
         <TextInput
-          style={{ height: 40, borderColor: "black", borderWidth: 2, margin: 20, padding: 10, fontSize: 16 }}
+          style={{
+            height: 40,
+            borderColor: "black",
+            borderWidth: 2,
+            margin: 20,
+            padding: 10,
+            fontSize: 16,
+          }}
           onChangeText={(text) => setItem({ ...item, itemName: text })}
           value={item.itemName}
           placeholder="Name"
         />
         <TextInput
-          style={{ height: 40, borderColor: "black", borderWidth: 2, margin: 20, padding: 10, fontSize: 16 }}
+          style={{
+            height: 40,
+            borderColor: "black",
+            borderWidth: 2,
+            margin: 20,
+            padding: 10,
+            fontSize: 16,
+          }}
           onChangeText={(text) => setItem({ ...item, price: text })}
           value={item.price}
           placeholder="Price"
         />
         <TextInput
-          style={{ height: 40, borderColor: "black", borderWidth: 2, margin: 20, padding: 10, fontSize: 16 }}
+          style={{
+            height: 40,
+            borderColor: "black",
+            borderWidth: 2,
+            margin: 20,
+            padding: 10,
+            fontSize: 16,
+          }}
           onChangeText={(text) => setItem({ ...item, farmName: text })}
           value={item.farmName}
           placeholder="Farm name"
         />
         <TextInput
-          style={{ height: 40, borderColor: "black", borderWidth: 2, margin: 20, padding: 10, fontSize: 16 }}
+          style={{
+            height: 40,
+            borderColor: "black",
+            borderWidth: 2,
+            margin: 20,
+            padding: 10,
+            fontSize: 16,
+          }}
           onChangeText={(text) => setItem({ ...item, farmLocation: text })}
           value={item.farmLocation}
           placeholder="Farm location"
@@ -53,7 +83,13 @@ const AddItemDetailScreen = (props) => {
             onPress={() => {
               const price = parseFloat(item.price);
               const { itemName, farmName, farmLocation, imageUrl } = item;
-              let newItem = { itemName, price, farmName, farmLocation, imageUrl };
+              let newItem = {
+                itemName,
+                price,
+                farmName,
+                farmLocation,
+                imageUrl,
+              };
 
               console.log(newItem);
 
@@ -72,7 +108,6 @@ const AddItemDetailScreen = (props) => {
             }}
           />
         </View>
-
       </View>
     </View>
   );
