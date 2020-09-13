@@ -42,7 +42,7 @@ const LocationSearchScreen = () => {
         <View>
           <Text>Population: {covidInfo.meta.population}</Text>
           <Text>Active Cases: {activeCases}</Text>
-          <Text>Today's confirmed cases: {covidInfo.delta.confirmed}</Text>
+          {/* <Text>Today's confirmed cases: {covidInfo.delta.confirmed}</Text> */}
         </View>
       )}
     </ScrollView>
