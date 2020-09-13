@@ -73,7 +73,7 @@ export default function LoginScreen({ navigation }) {
                     <Text style={styles.buttonTitle}>Log in</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Lets Sign up</Text></Text>
+                    <Text style={styles.footerText}>Don't have a account yet? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Lets Sign you up</Text></Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>

@@ -1,32 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
 import styles from '../SearchScreen/styles'
 import Carousel from 'react-native-snap-carousel';
-
+import { firebase } from '../../firebase/config'
 
 export default function SearchScreen(props) {
     const [value, onChangeText] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
 
     // dummy data , use useEffect instead to fetch the actual data from firebase
-    const [items, setItems] = useState([
-        {
-            name: "desi tomato",
-            price: 120,
-            seller: "Baccha yadav",
-            distance: 200,
-            safetyFactor: 9,
-            url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/tomatoes-39dd2fd.jpg?quality=90&resize=418%2C380"
-        },
-        {
-            name: "desi aam",
-            price: 250,
-            seller: "Swami Lal",
-            distance: 300,
-            safetyFactor: 8,
-            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-q0I-wPdnbBJzsiveDsR3fgP6kZWGIZrjHg&usqp=CAU"
-        }
-    ]);
+    const [items, setItems] = useState([]);
+
+
+    const entity = firebase.firestore().collection('items');
+
+    useEffect(() => {
+
+        entity.where("itemName", "==", value)
+            .orderBy('price')
+            .onSnapshot(
+                querySnapshot => {
+                    const newItems = [];
+                    querySnapshot.forEach(doc => {
+                        const val = doc.data();
+                        val.id = doc.id;
+                        newItems.push(val);
+                    })
+                    setItems(newItems);
+                },
+                error => {
+                    console.log(error)
+                }
+            )
+
+    }, [value])
+
 
     const _renderItem = ({ item, index }) => {
         return (
@@ -35,15 +43,14 @@ export default function SearchScreen(props) {
                     activeOpacity={0.6}
                 >
                     <Image
-                        source={{ uri: item.url }}
+                        source={{ uri: item.imageUrl }}
                         style={styles.ImageIconStyle}
                     />
                 </TouchableOpacity>
                 <View style={styles.content}>
-                    <Text style={styles.contentText}>Price : ${item.price}</Text>
-                    <Text style={styles.contentText}>Distance : {item.distance}m</Text>
-                    <Text style={styles.contentText}>Safety Index : {item.safetyFactor} / 10</Text>
-                    <Text style={styles.contentText}>Seller : {item.seller}</Text>
+                    <Text style={styles.contentText}>Price : ₹ {item.price}</Text>
+                    <Text style={styles.contentText}>Location : {item.farmLocation}</Text>
+                    <Text style={styles.contentText}>Seller : {item.farmName}</Text>
                 </View>
 
             </View>
@@ -63,15 +70,21 @@ export default function SearchScreen(props) {
                     value={value}
                 />
             </View>
-            <Carousel
-                // layout="tinder"
-                ref={ref => carousel = ref}
-                data={items}
-                sliderWidth={300}
-                itemWidth={300}
-                renderItem={_renderItem}
-                onSnapToItem={index => setActiveIndex(index)}
-            />
+            {value ?
+                <Carousel
+                    // layout="tinder"
+                    ref={ref => carousel = ref}
+                    data={items}
+                    sliderWidth={300}
+                    itemWidth={300}
+                    renderItem={_renderItem}
+                    onSnapToItem={index => setActiveIndex(index)}
+                />
+                :
+                <>
+                </>
+            }
+
         </View>
     )
 }
