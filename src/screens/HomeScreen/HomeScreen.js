@@ -47,31 +47,22 @@ export default function HomeScreen(props) {
           />
         </TouchableOpacity>
 
-        <Text
-          onPress={() => props.navigation.navigate("AddItemDetail")}
-          style={{ color: "blue", alignSelf: "center" }}
-        >
-          Temporary: add item
-      </Text>
+        <Text style={styles.text}>
+          Got stuff to sell ?{" "}
+            Add Here
+        </Text>
 
-        <View style={styles.footerView}>
-          <Text style={styles.footerText}>
-            Got stuff to sell ?{" "}
-            <Text onPress={onAddLinkPress} style={styles.footerLink}>
-              Add Here
-          </Text>
-          </Text>
-        </View>
+      </View>
 
-        <View style={styles.Box}>
-          <TouchableOpacity onPress={onBuyLinkPress}><Image
-            source={{ uri: "https://cdn.iconscout.com/icon/premium/png-512-thumb/buy-now-5-622218.png" }} style={styles.buyIcon} /></TouchableOpacity>
+      <View style={styles.Box}>
+        <TouchableOpacity onPress={onBuyLinkPress}><Image
+          source={{ uri: "https://cdn.iconscout.com/icon/premium/png-512-thumb/buy-now-5-622218.png" }} style={styles.buyIcon} /></TouchableOpacity>
 
-          <Text style={styles.text}>
-            Wanna buy something ?
+        <Text style={styles.text}>
+          Wanna buy something ?
 
         </Text>
-        </View>
       </View>
+    </View>
   );
 }
