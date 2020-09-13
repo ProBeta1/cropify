@@ -48,6 +48,16 @@ const AddItemDetailScreen = (props) => {
             let newItem = { itemName, price, farmName, farmLocation, imageUrl };
 
             console.log(newItem);
+
+            // Add item to firestore
+            const db = firebase.firestore();
+            db.collection("items")
+              .add(newItem)
+              .then((docRef) => {
+                console.log("Item added: ", docRef.id);
+              })
+              .catch((err) => console.log(`Cannot add item: ${err}`));
+
             // setTimeout(() => {
             // }, 1000);
           }}
