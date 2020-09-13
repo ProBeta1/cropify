@@ -8,9 +8,9 @@ const AddItemDetailScreen = (props) => {
   const { imageUrl } = route.params;
 
   const handleAdded = () => {
-    Alert.alert(item.itemName + " succesfully added :)")
+    Alert.alert(item.itemName + " succesfully added :)");
     navigation.navigate("Home");
-  }
+  };
 
   const [item, setItem] = useState({
     itemName: "",
@@ -21,6 +21,8 @@ const AddItemDetailScreen = (props) => {
   });
   return (
     <View>
+
+
       <KeyboardAwareScrollView
         keyboardShouldPersistTaps="always">
         <Text style={{ margin: 20, fontSize: 20, fontWeight: 'bold' }}>Add the Details</Text>
@@ -58,6 +60,7 @@ const AddItemDetailScreen = (props) => {
                 const { itemName, farmName, farmLocation, imageUrl } = item;
                 let newItem = { itemName, price, farmName, farmLocation, imageUrl };
 
+
                 console.log(newItem);
 
                 // Add item to firestore
@@ -70,6 +73,8 @@ const AddItemDetailScreen = (props) => {
                   })
                   .catch((err) => console.log(`Cannot add item: ${err}`));
 
+
+
                 // setTimeout(() => {
                 // }, 1000);
               }}
@@ -78,6 +83,7 @@ const AddItemDetailScreen = (props) => {
 
         </View>
       </KeyboardAwareScrollView>
+
     </View>
   );
 };

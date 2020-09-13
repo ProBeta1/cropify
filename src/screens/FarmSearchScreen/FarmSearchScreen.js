@@ -6,12 +6,14 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  FlatList,
   Dimensions,
 } from "react-native";
 import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 import MapView, { Marker } from "react-native-maps";
 import { GetCovidInfo } from "../../utilities/GetCovidInfo";
+import { allDistricts } from "../../utilities/IndianDistrict";
 
 // cropify project
 const GCP_API_KEY = "AIzaSyDg3QleDVQIZMBzAHylCxsPaZLf1eSQXSE";
@@ -28,6 +30,19 @@ const FarmSearchScreen = () => {
   });
   const [covidInfo, setCovidInfo] = useState(null);
   const [activeCases, setActiveCases] = useState(0);
+  const [dropdown, setDropDown] = useState();
+
+  const searchFilterFunction = (text) => {
+    const newData = allDistricts.filter((item) => {
+      const itemData = `${item.toUpperCase()}`;
+
+      const textData = text.toUpperCase();
+
+      return itemData.indexOf(textData) > -1;
+    });
+
+    setDropDown(newData);
+  };
 
   const onPress = async () => {
     // Google Places API: query: farms, India, $location
@@ -68,29 +83,58 @@ const FarmSearchScreen = () => {
       });
   };
   return (
-    <ScrollView>
-      <Text style={{ fontSize: 30, margin: 10 }}>Search for a farm</Text>
+    <View>
+      <Text style={{ fontSize: 30, margin: 10 }}>Search for a farm in...</Text>
       <View style={{ flexDirection: "row" }}>
         <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 3, margin: 5, padding: 10, width: '85%' }}
-          onChangeText={(text) => setLocation(text)}
+          style={{
+            height: 40,
+            borderColor: "gray",
+            borderWidth: 3,
+            margin: 5,
+            padding: 10,
+            width: "85%",
+          }}
+          onChangeText={(text) => {
+            setLocation(text);
+            searchFilterFunction(text);
+          }}
           placeholder="Enter a location"
           value={location}
         />
-        <TouchableOpacity onPress={onPress} style={{ alignSelf: 'center', marginLeft: 10 }}>
+        <TouchableOpacity
+          onPress={onPress}
+          style={{ alignSelf: "center", marginLeft: 10 }}
+        >
           <Ionicons name="ios-search" size={32} color="black" />
         </TouchableOpacity>
+      </View>
+      <View>
+        <FlatList
+          data={dropdown}
+          renderItem={({ item, index }) => (
+            <Text key={index} style={{ paddingVertical: 5, paddingLeft: 10 }}>
+              {item}
+            </Text>
+          )}
+          style={{ maxHeight: 150, borderColor: "black", borderWidth: 2 }}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
 
       {covidInfo && (
         <View style={{ margin: 20 }}>
           <Text style={{ fontSize: 18 }}>District: {location}</Text>
-          <Text style={{ fontSize: 18 }}>Total Population: {covidInfo.meta.population}</Text>
-          <Text style={{ fontSize: 18 }}>Active Covid Cases: {activeCases}</Text>
+          <Text style={{ fontSize: 18 }}>
+            Total Population: {covidInfo.meta.population}
+          </Text>
+          <Text style={{ fontSize: 18 }}>
+            Active Covid Cases: {activeCases}
+          </Text>
           {/* <Text>Today's confirmed cases: {covidInfo.delta.confirmed}</Text> */}
         </View>
       )}
-      <View >
+      <View>
         <MapView
           style={{ width: Dimensions.get("window").width, height: 300 }}
           region={region}
@@ -107,7 +151,7 @@ const FarmSearchScreen = () => {
             ))}
         </MapView>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
