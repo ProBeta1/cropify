@@ -69,28 +69,28 @@ const FarmSearchScreen = () => {
   };
   return (
     <ScrollView>
-      <Text>Farm Search</Text>
-      <View>
+      <Text style={{ fontSize: 30, margin: 10 }}>Search for a farm</Text>
+      <View style={{ flexDirection: "row" }}>
         <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          style={{ height: 40, borderColor: "gray", borderWidth: 3, margin: 5, padding: 10, width: '85%' }}
           onChangeText={(text) => setLocation(text)}
           placeholder="Enter a location"
           value={location}
         />
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} style={{ alignSelf: 'center', marginLeft: 10 }}>
           <Ionicons name="ios-search" size={32} color="black" />
         </TouchableOpacity>
       </View>
 
       {covidInfo && (
-        <View>
-          <Text>District: {location}</Text>
-          <Text>Population: {covidInfo.meta.population}</Text>
-          <Text>Active Covid Cases: {activeCases}</Text>
+        <View style={{ margin: 20 }}>
+          <Text style={{ fontSize: 18 }}>District: {location}</Text>
+          <Text style={{ fontSize: 18 }}>Total Population: {covidInfo.meta.population}</Text>
+          <Text style={{ fontSize: 18 }}>Active Covid Cases: {activeCases}</Text>
           {/* <Text>Today's confirmed cases: {covidInfo.delta.confirmed}</Text> */}
         </View>
       )}
-      <View>
+      <View >
         <MapView
           style={{ width: Dimensions.get("window").width, height: 300 }}
           region={region}

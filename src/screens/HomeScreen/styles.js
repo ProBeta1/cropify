@@ -16,9 +16,41 @@ export default StyleSheet.create({
     marginRight: 30,
     paddingLeft: 16,
   },
+  searchIcon: {
+    height: 80,
+    width: 80,
+  },
+  sellIcon: {
+    width: 80,
+    height: 50
+  },
+  buyIcon: {
+    width: 80,
+    height: 80
+  },
+  Box: {
+    borderColor: 'black',
+    borderStyle: "dashed",
+    backgroundColor: '#ffea00',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 15,
+    padding: 10,
+    borderWidth: 2,
+    borderRadius: 50
+  },
+  headText: {
+    fontSize: 22,
+    margin: 10,
+    fontWeight: 'bold',
+    color: '#780116',
+    borderBottomColor: 'black',
+    borderBottomWidth: 3
+  },
   text: {
-    fontSize: 25,
-    margin: 20,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#ff006e"
   },
   headerView: {
     // flex: 1,
@@ -37,6 +69,6 @@ export default StyleSheet.create({
   footerLink: {
     color: "#788eec",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 20,
   },
 });
