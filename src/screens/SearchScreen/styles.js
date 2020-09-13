@@ -21,8 +21,8 @@ export default StyleSheet.create({
         margin: 20
     },
     card: {
-        backgroundColor: 'floralwhite',
-        borderRadius: 10,
+        backgroundColor: '#ff5a5f',
+        borderRadius: 30,
         height: 400,
         marginTop: 10,
         padding: 20,
@@ -49,19 +49,19 @@ export default StyleSheet.create({
         fontSize: 16
     },
     ImageIconStyle: {
-        height: 200,
-        width: 200,
-        borderRadius: 50,
+        height: 220,
+        width: 220,
+        borderRadius: 20,
         resizeMode: 'cover'
     },
     content: {
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 10
+        marginTop: 20
     },
     contentText: {
         fontSize: 16,
-        color: '#6600CC',
+        color: '#f7fef2',
         fontWeight: "bold",
         margin: 5
     }

@@ -75,11 +75,11 @@ const App = () => {
             </Stack.Screen>
           </>
         ) : (
-          <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Registration" component={RegistrationScreen} />
-          </>
-        )}
+            <>
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Registration" component={RegistrationScreen} />
+            </>
+          )}
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -97,4 +97,5 @@ const styles = StyleSheet.create({
   },
 });
 
+console.disableYellowBox = true;
 export default App;
